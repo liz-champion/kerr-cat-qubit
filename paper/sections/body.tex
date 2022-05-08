@@ -16,21 +16,21 @@
 
 \begin{figure*}[t]
      \centering
-     \begin{subfigure}[b]{0.32\textwidth}
+     \begin{subfigure}[b]{0.30\textwidth}
          \centering
          \includegraphics[width=\textwidth]{figures/ground.pdf}
          \caption{}
          \label{fig:ground}
      \end{subfigure}
      \hfill
-     \begin{subfigure}[b]{0.32\textwidth}
+     \begin{subfigure}[b]{0.30\textwidth}
          \centering
          \includegraphics[width=\textwidth]{figures/initialized_cat.pdf}
          \caption{}
          \label{fig:initialized_cat}
      \end{subfigure}
      \hfill
-     \begin{subfigure}[b]{0.32\textwidth}
+     \begin{subfigure}[b]{0.30\textwidth}
          \centering
          \includegraphics[width=\textwidth]{figures/ideal_cat.pdf}
          \caption{}
@@ -41,7 +41,7 @@
 \end{figure*}
 
 Cat states can be initialized and stabilized in a superconducting microwave resonator by introducing a Kerr nonlinearity and a two-photon squeezing drive, as proposed by Puri et al. and later realized experimentally by Grimm et al. \cite{puri_2017,grimm_2020}.
-The experimental platform used by Grimm et al. consists of a nonlinear resonator place within a 3D microwave cavity; the resulting nonlinearity facilitates the generation of a two-photon drive through three-wave mixing and is also responsible for the Kerr nonlinearity.
+The experimental platform used by Grimm et al. consists of a nonlinear resonator placed within a 3D microwave cavity; the resulting nonlinearity facilitates the generation of a two-photon drive through three-wave mixing and is also responsible for the Kerr nonlinearity.
 See \cite{grimm_2020}, particularly the supplementary information, for details.
 
 The Hamiltonian describing this system in the absence of any other microwave drives (after a transformation to the frame rotating at the resonator frequency) is
@@ -63,7 +63,7 @@ The time evolution of the system is determined using the Lindblad master equatio
 \[
     \dot{\hat{\rho}} = - \frac {i} {\hbar} [\hat{H}_{\rm sys}, \hat{\rho}] + \kappa_a (1 + n_{\rm th}) \mathcal{D}[\hat{a}] \hat{\rho} + \kappa_a n_{\rm th} \mathcal{D}[\hat{a}^\dag] \hat{\rho}
 \]
-where $\kappa_a = 1/T_1$, $T_1 =$ \SI{15.5}{\micro\s} is the single-photon loss rate of the resonator and
+where $\kappa_a = 1/T_1$ is the single-photon loss rate (Grimm et al. measures $T_1 =$ \SI{15.5}{\micro\s} \cite{grimm_2020}) and
 \[
     \mathcal{D}[\hat{\mathcal{O}}] \hat{\rho} = \hat{\mathcal{O}} \hat{\rho} \hat{\mathcal{O}}^\dag - \frac {1} {2} \hat{\mathcal{O}}^\dag \hat{\mathcal{O}} \hat{\rho} - \frac {1} {2} \hat{\rho} \hat{\mathcal{O}}^\dag \hat{\mathcal{O}}.
 \]
@@ -76,7 +76,7 @@ An exponential fit to this curve yields a decay time of $\tau_Z =$ \SI{2.526}{\m
 
 \section{\label{sec:gates} Single-qubit gate operations}
 
-Having characterized the initialization and subsequent decoherence of a Kerr-cat qubit, we now turn our attention to a universal single-qubit control, realized in an $X(\theta)$ gate for arbitrary $\theta$ and a $Z(\pi/2)$ gate.
+Having characterized the initialization and subsequent decoherence of a Kerr-cat qubit, we now turn our attention to universal single-qubit control, realized in an $X(\theta)$ gate for arbitrary $\theta$ and a $Z(\pi/2)$ gate.
 In particular, we wish to show that these gates can be performed in a time much shorter than the qubit's decoherence time.
 
 \subsection{Arbitrary $X$ rotations}
@@ -131,13 +131,13 @@ Through sequences of $X(\theta)$ and $Z(\pi/2)$ gates we could in principle reac
 \begin{figure}[t]
     \centering
     \includegraphics[width=\columnwidth]{figures/bloch.pdf}
-    \caption{Projection of the cat-qubit state onto the states corresponding to the axes of the Bloch sphere during state initialization and the application of an $X(\pi/2)$ gate followed by a $Z(\pi/2)$ gate. Solid lines correspond to the positive direction on the Bloch sphere axis axis while dashed lines correspond to the negative direction.}
+    \caption{Projection of the cat-qubit state onto the states corresponding to the axes of the Bloch sphere during state initialization and the application of an $X(\pi/2)$ gate followed by a $Z(\pi/2)$ gate. Solid lines correspond to the positive direction on the Bloch sphere axis while dashed lines correspond to the negative direction.}
     \label{fig:bloch}
 \end{figure}
 
 \section{\label{sec:two_qubit} The two-qubit entangling gate}
 
-While Grimm et al. \cite{grimm_2020} is concerned with the stabilization and operation of a single qubit, one can imagine capacitively coupling two such resonators, resulting in the coupling Hamiltonian
+While Grimm et al. \cite{grimm_2020} is concerned principally with the stabilization and operation of a single qubit, one can imagine capacitively coupling two of these resonators, resulting in the coupling Hamiltonian
 \begin{equation}
     \hat{H}_c / \hbar = \chi(t) (\hat{a}_1^\dag \otimes \hat{a}_2 + \hat{a}_1 \otimes \hat{a}_2^\dag)
 \end{equation}
@@ -156,21 +156,21 @@ We now have a four-dimensional logical qubit basis spanned by the states $\ket{\
 
 \begin{figure*}[t]
      \centering
-     \begin{subfigure}[b]{0.32\textwidth}
+     \begin{subfigure}[b]{0.31\textwidth}
          \centering
          \includegraphics[width=\textwidth]{figures/q_mixed.pdf}
          \caption{}
          \label{fig:ground}
      \end{subfigure}
      \hfill
-     \begin{subfigure}[b]{0.32\textwidth}
+     \begin{subfigure}[b]{0.31\textwidth}
          \centering
          \includegraphics[width=\textwidth]{figures/q_entangled.pdf}
          \caption{}
          \label{fig:initialized_cat}
      \end{subfigure}
      \hfill
-     \begin{subfigure}[b]{0.32\textwidth}
+     \begin{subfigure}[b]{0.31\textwidth}
          \centering
          \includegraphics[width=\textwidth]{figures/q_actual.pdf}
          \caption{}
@@ -219,7 +219,7 @@ Suppose the $Q$ function for such a separable state in our two-dimensional repre
 The above factorization implies that the $Q$ function must have peaks at $(-\alpha_1, \alpha_2)$ and $(\alpha_1, -\alpha_2)$ as well, while this need not be the case for a non-separable (i.e. entangled) state.
 Finally, note that by Eq. (\ref{eq:Q}) the $Q$ function of a statistical mixture is the sum of the $Q$ functions of its constituent parts.
 
-Figure \ref{fig:Q} shows the $Q$ functions for the statistical mixture $\hat{\rho} = (\ket{00}\bra{00} + \ket{11}\bra{11}) / 2$, the entangled state $\ket{\Phi^+} = (\ket{00} + \ket{11}) / \sqrt{2}$ in the ideal case, and the same entangled state as initialized in the numerical simulation.
+Figure \ref{fig:Q} shows the $Q$ functions for the statistical mixture $\hat{\rho} = (\ket{00}\bra{00} + \ket{11}\bra{11}) / 2$, the entangled state $\ket{\Phi^+} = (\ket{00} + \ket{11}) / \sqrt{2}$ in the ideal case, and the same entangled state as generated in the numerical simulation.
 Note that the statistical mixture and the entangled state both have the same measurement probabilities in the logical qubit basis, and are therefore indistinguishable when only considering such measurements.
 The $Q$ functions, however, demonstrate the presence of bipartite entanglement: the statistical mixture obeys the above requirement regarding the locations of its peaks, while the entangled state does not.
 Because $Q$ functions are experimentally accessible \cite{kirchmair_2013,floerchinger_2022}, measurements of it could possibly be used to confirm the presence of entanglement in an experimental implementation of the coupling described here.
