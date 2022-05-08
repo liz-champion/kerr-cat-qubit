@@ -1,0 +1,44 @@
+\documentclass[a4paper, amsfonts, amssymb, amsmath, reprint, showkeys, nofootinbib, twoside]{revtex4-1}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[colorinlistoftodos, color=green!40, prependcaption]{todonotes}
+%\input{preamble}
+\usepackage[pdftex, pdftitle={Article}, pdfauthor={Author}]{hyperref} % For hyperlinks in the PDF
+\usepackage{siunitx}
+\usepackage{braket}
+\usepackage{xfrac}
+\usepackage{caption}
+\usepackage{subcaption}
+\captionsetup{justification=raggedright,singlelinecheck=false}
+\newcommand\editremark[1]{{\color{red}#1}}
+%\setlength{\marginparwidth}{2.5cm}
+%\usepackage{biblatex}
+%\addbibresource{Reference.bib}
+\bibliographystyle{apsrev4-1}
+\begin{document}
+\title{Initialization and control of Kerr-cat qubits}
+
+\author{Elizabeth Champion}
+\affiliation{Department of Physics and Astronomy, University of Rochester}
+
+\date{\today} % Leave empty to omit a date
+
+\begin{abstract}
+    \noindent A method for protecting quantum information from environmental noise and correcting errors when they occur is vital for scalable quantum computation.
+    Quantum error correction generally involves reduntantly distributing the information contained in a single logical qubit in a non-local manner.
+    Among many potential platforms for quantum error correction, encoding quantum information in the non-local phase space of an oscillator shows promise for reliable and hardware-efficient error correction.
+    In this paper we consider one such encoding, in which superpositions of coherent states--called Schr\"odinger cat states--are used to encode the logical basis states.
+    We present a numerical simulation of one particular implementation of a cat qubit which utilizes a Kerr-nonlinear resonator.
+    Universal single-qubit control is demonstrated, and we consider the prospect of capacitively coupling two such qubits to produce entangled states.
+\end{abstract}
+
+
+\maketitle
+
+\input{sections/introduction.tex}
+\input{sections/body.tex}
+\input{sections/conclusion.tex}
+
+\bibliography{citations}
+
+\end{document}
