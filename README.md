@@ -1,3 +1,3 @@
-# PHYS 532 Final Project: Kerr-Cat Qubits
+# Kerr-Cat Qubits
 
-Repository for my PHYS 532 final project code and paper.
+Code for simulating qubits encoded as Schrödinger cat states in an anharmonic oscillator.

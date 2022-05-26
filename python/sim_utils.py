@@ -7,26 +7,35 @@ pi = np.pi
 
 class KCQ:
 
-    def __init__(self, N=10, nqubits=1):
+    def __init__(self,
+            N = 10,                             # Dimensionality of the Hilbert space, per resonator
+            nqubits = 1,                        # Number of cat qubits (i.e. resonators)
+            K = 2. * pi * 6.7 * MHz,            # Kerr nonlinearity
+            e_2 = 2. * pi * 17.5 * MHz,         # Squeezing drive strength
+            tau = 0.32 * MHz                    # Squeezing drive ramp time
+            e_x = 2. * pi * 6. * MHz            # X-rotation drive strength
+            e_x_rabi = 2. * pi * 0.74 * MHz,    # Rabi oscillation drive strength
+            n_th = 0.04,                        # Population of n=1 Fock state in initial thermal state
+            chi = 2. * pi * 1. * MHz,           # Coupling strength
+            T_1 = 15.5 / MHz,                   # Single-photon decay time
+            ):
+
         self.N = N
         self.nqubits = nqubits
-
-        ### system parameters
-        self.K = 2. * pi * 6.7 * MHz # Kerr nonlinearity
-        self.e_2 = 2. * pi * 17.5 * MHz # two-photon drive strength
-        self.e_x = 2. * pi * 6. * MHz
-        self.e_x_rabi = 2. * pi * 0.74 * MHz
-        self.n_th = 0.04 # population of n=1 Fock state due to thermal noise
-        self.chi = 2. * pi * 1. * MHz # coupling strength between resonators
-        self.T_1 = 15.5 / MHz # single-photon decay time
-        self.kappa = 1. / self.T_1
-        self.tau = 0.32 * MHz # two-photon drive ramp time
+        self.K = K
+        self.e_2 = e_2
+        self.tau = tau
+        self.e_x = e_x
+        self.e_x_rabi = e_x_rabi
+        self.n_th = n_th
+        self.chi = chi
+        self.T_1 = T_1
 
         self.t0 = 0.
         self.alpha = np.sqrt(self.e_2 / self.K)
         
-        self.C_0 = (qt.coherent(self.N, self.alpha) + qt.coherent(self.N, -self.alpha)) / np.sqrt(2. * (1. + np.exp(-2. * np.abs(self.alpha))))
-        self.C_1 = (qt.coherent(self.N, self.alpha) - qt.coherent(self.N, -self.alpha)) / np.sqrt(2. * (1. - np.exp(-2. * np.abs(self.alpha))))
+        self.C_0 = (qt.coherent(self.N, self.alpha) + qt.coherent(self.N, -self.alpha)) / np.sqrt(2. * (1. + np.exp(-2. * np.abs(self.alpha)**2)))
+        self.C_1 = (qt.coherent(self.N, self.alpha) - qt.coherent(self.N, -self.alpha)) / np.sqrt(2. * (1. - np.exp(-2. * np.abs(self.alpha)**2)))
 
         self.H = []
         for i in range(self.nqubits):
