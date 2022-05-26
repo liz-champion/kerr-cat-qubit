@@ -8,17 +8,16 @@ pi = np.pi
 class KCQ:
 
     def __init__(self,
-            N = 10,                             # Dimensionality of the Hilbert space, per resonator
+            N = 15,                             # Dimensionality of the Hilbert space, per resonator
             nqubits = 1,                        # Number of cat qubits (i.e. resonators)
             K = 2. * pi * 6.7 * MHz,            # Kerr nonlinearity
             e_2 = 2. * pi * 17.5 * MHz,         # Squeezing drive strength
-            tau = 0.32 * MHz                    # Squeezing drive ramp time
-            e_x = 2. * pi * 6. * MHz            # X-rotation drive strength
+            tau = 0.32 * MHz,                   # Squeezing drive ramp time
+            e_x = 2. * pi * 6. * MHz,           # X-rotation drive strength
             e_x_rabi = 2. * pi * 0.74 * MHz,    # Rabi oscillation drive strength
             n_th = 0.04,                        # Population of n=1 Fock state in initial thermal state
             chi = 2. * pi * 1. * MHz,           # Coupling strength
-            T_1 = 15.5 / MHz,                   # Single-photon decay time
-            ):
+            T_1 = 15.5 / MHz):                  # Single-photon decay time
 
         self.N = N
         self.nqubits = nqubits
@@ -53,7 +52,8 @@ class KCQ:
     def two_photon(self, qubit):
         H_list = [qt.identity(self.N)] * self.nqubits
         H_list[qubit] = self.e_2 * qt.create(self.N)**2 + np.conj(self.e_2) * qt.destroy(self.N)**2
-        s = "0.5 * tanh(4. * (t - {0}) / {1} - 2.) + 0.5".format(self.t0, self.tau)
+        const = 0.5 * np.tanh(-2.) + 0.5
+        s = "(0.5 * tanh(4. * (t - {0}) / {1} - 2.) + 0.5 - {2}) / (1. - {2})".format(self.t0, self.tau, const)
         self.H.append([qt.tensor(H_list), s])
 
     def add_identity_gate(self, duration):
