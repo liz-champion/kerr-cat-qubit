@@ -29,12 +29,23 @@ class KCQ:
         self.n_th = n_th
         self.chi = chi
         self.T_1 = T_1
+        self.kappa = 1. / T_1
 
         self.t0 = 0.
         self.alpha = np.sqrt(self.e_2 / self.K)
         
         self.C_0 = (qt.coherent(self.N, self.alpha) + qt.coherent(self.N, -self.alpha)) / np.sqrt(2. * (1. + np.exp(-2. * np.abs(self.alpha)**2)))
         self.C_1 = (qt.coherent(self.N, self.alpha) - qt.coherent(self.N, -self.alpha)) / np.sqrt(2. * (1. - np.exp(-2. * np.abs(self.alpha)**2)))
+
+        mag0 = np.real((self.C_0.dag() * self.C_0).full().item())
+        mag1 = np.real((self.C_1.dag() * self.C_1).full().item())
+        # first check the normalization to get an idea of whether or not we have a high enough dimensionality
+        if mag0 < 0.995 or mag1 < 0.995:
+            print("Warning: Hilbert space dimensionality is likely too small for the given system parameters, consider increasing it")
+
+        # ... then just ensure that it's exactly normalized
+        self.C_0 /= np.sqrt(mag0)
+        self.C_1 /= np.sqrt(mag1)
 
         self.H = []
         for i in range(self.nqubits):
@@ -134,5 +145,5 @@ class KCQ:
 
     def set_N(self, N):
         self.N = N
-        self.C_0 = (qt.coherent(self.N, self.alpha) + qt.coherent(self.N, -self.alpha)) / np.sqrt(2. * (1. + np.exp(-2. * np.abs(self.alpha))))
-        self.C_1 = (qt.coherent(self.N, self.alpha) - qt.coherent(self.N, -self.alpha)) / np.sqrt(2. * (1. - np.exp(-2. * np.abs(self.alpha))))
+        self.C_0 = (qt.coherent(self.N, self.alpha) + qt.coherent(self.N, -self.alpha)) / np.sqrt(2. * (1. + np.exp(-2. * np.abs(self.alpha)**2)))
+        self.C_1 = (qt.coherent(self.N, self.alpha) - qt.coherent(self.N, -self.alpha)) / np.sqrt(2. * (1. - np.exp(-2. * np.abs(self.alpha)**2)))
